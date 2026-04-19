@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>8349 恒耀國際｜匯聚帶 v1</title>
+<style>
+:root{
+  --bg:#f0ebe0;
+  --surface:#fff;
+  --ink:#111a28;
+  --ink-2:#3b4a5e;
+  --ink-3:#7a8694;
+  --ink-4:#a5afb9;
+  --rule:#d6cdb5;
+  --line:#e8e0cc;
+  --line-soft:#f0ead8;
+
+  --now:#c07c10;
+  --now-bg:#fff6d6;
+
+  --c1:#c6395e; --c1b:#fdedf0; --c1w:#fdf5f7;
+  --c2:#2978c4; --c2b:#e4f0fb; --c2w:#f1f7fd;
+  --c3:#b96a15; --c3b:#fbeedc; --c3w:#fdf7ec;
+  --c4:#9e7a12; --c4b:#f9efc5; --c4w:#fcf7df;
+  --c5:#1d7a48; --c5b:#daf1e2; --c5w:#eaf5ee;
+  --c6:#0e7878; --c6b:#d2ecec; --c6w:#e6f3f3;
+  --c7:#6a3b8a; --c7b:#ebdef3; --c7w:#f2e8f7;
+  --c8:#8b4513; --c8b:#f5e6d3; --c8w:#faf2eb;
+
+  --shadow:0 1px 3px rgba(17,26,40,.06),0 6px 20px rgba(17,26,40,.05);
+  --r:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{
+  margin:0;padding:20px 16px 50px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC",sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55;
+}
+.w{max-width:980px;margin:0 auto}
+.m{font-variant-numeric:tabular-nums}
+
+.hd{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden;position:relative}
+.hd::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--c1) 0%,var(--c1) 14%,var(--c2) 14%,var(--c2) 28%,var(--c3) 28%,var(--c3) 42%,var(--c4) 42%,var(--c4) 57%,var(--c5) 57%,var(--c5) 71%,var(--c6) 71%,var(--c6) 85%,var(--c7) 85%)}
+.hd-top{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 0;gap:20px;flex-wrap:wrap}
+.hd-id{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.hd-id h1{margin:0;font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.hd-id h1 .code{color:var(--ink-2);margin-right:4px}
+.hd-id .pipe{color:var(--rule);font-weight:300;font-size:32px;margin:0 2px}
+.hd-id h2{margin:0;font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.hd-price{text-align:right;display:flex;align-items:baseline;gap:14px}
+.hd-price .p{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1;color:#c13f3f}
+.hd-price .chg{font-size:12px;color:#c13f3f;font-weight:700}
+.hd-price .chg span{color:var(--ink-3);font-weight:500;margin-left:4px}
+
+.hd-stats{display:flex;gap:0;margin:14px 24px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.hd-stats>div{flex:1;padding:8px 20px;border-right:1px dashed var(--line)}
+.hd-stats>div:first-child{padding-left:0}
+.hd-stats>div:last-child{border-right:none;padding-right:0}
+.hd-stats dt{font-size:10px;font-weight:700;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1px}
+.hd-stats dd{margin:0;font-size:16px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+
+.kpis{display:flex;gap:8px;flex-wrap:wrap;padding:12px 24px 14px}
+.kp{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:700;border:1px solid var(--line);background:var(--surface)}
+.kp .dot{width:8px;height:8px;border-radius:3px;flex-shrink:0}
+.kp .v{font-weight:800;color:var(--ink);font-size:14px;letter-spacing:-.01em}
+.kp .n{color:var(--ink-3);font-size:11px;font-weight:600}
+
+.judge{background:linear-gradient(135deg,#1d7a48,#0e7878);border-radius:var(--r);padding:18px 24px;margin-bottom:12px;color:#fff;box-shadow:var(--shadow)}
+.judge h3{margin:0 0 10px;font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+.judge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.judge-grid>div{border-left:3px solid rgba(255,255,255,.4);padding-left:14px}
+.judge-grid dt{font-size:11px;font-weight:700;opacity:.75;letter-spacing:.06em;margin-bottom:2px}
+.judge-grid dd{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em}
+.judge-grid dd .stars{font-size:14px;font-weight:600;margin-left:6px;opacity:.9}
+.judge-grid .rsn{margin-top:4px;font-size:11.5px;font-weight:500;opacity:.82;line-height:1.5}
+.judge-note{margin:14px 0 0;padding:10px 14px;background:rgba(255,255,255,.12);border-radius:6px;font-size:12.5px;line-height:1.6}
+.judge-note b{font-weight:800}
+
+.upd,.scoring,.chip-sec,.narr{background:var(--surface);border-radius:var(--r);box-shadow:0 1px 2px rgba(0,0,0,.04);margin-bottom:12px;border:1px solid var(--line);overflow:hidden}
+.upd-toggle,.scoring-toggle,.chip-toggle,.narr-toggle{display:flex;align-items:center;gap:10px;padding:10px 20px;cursor:pointer;-webkit-user-select:none;user-select:none;background:transparent;border:none;width:100%;font:inherit;color:var(--ink);text-align:left}
+.upd-toggle:hover,.scoring-toggle:hover,.chip-toggle:hover,.narr-toggle:hover{background:#faf7ee}
+.upd-toggle h3,.scoring-toggle h3,.chip-toggle h3,.narr-toggle h3{margin:0;font-size:13px;font-weight:800;flex:1;display:flex;align-items:center;gap:8px}
+.upd-toggle h3::before{content:"4/17";font-size:10px;font-weight:800;color:#fff;background:var(--c2);padding:2px 8px;border-radius:4px;letter-spacing:.04em}
+.chip-toggle h3::before{content:"籌碼";font-size:10px;font-weight:800;color:#fff;background:var(--c5);padding:2px 8px;border-radius:4px;letter-spacing:.04em}
+.narr-toggle h3::before{content:"敘事";font-size:10px;font-weight:800;color:#fff;background:var(--c7);padding:2px 8px;border-radius:4px;letter-spacing:.04em}
+.upd-toggle .arr,.scoring-toggle .arr,.chip-toggle .arr,.narr-toggle .arr{font-size:14px;color:var(--ink-3);transition:transform .25s}
+.upd.open .upd-toggle .arr,.scoring.open .scoring-toggle .arr,.chip-sec.open .chip-toggle .arr,.narr.open .narr-toggle .arr{transform:rotate(180deg)}
+.upd-body,.scoring-body,.chip-body,.narr-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.upd.open .upd-body{max-height:900px}
+.scoring.open .scoring-body{max-height:500px}
+.chip-sec.open .chip-body{max-height:900px}
+.narr.open .narr-body{max-height:900px}
+.upd-list{padding:0 20px 14px;margin:0;list-style:none;columns:2;column-gap:24px}
+.upd-list li{break-inside:avoid;font-size:13px;color:var(--ink-2);line-height:1.55;padding:3px 0 3px 18px;position:relative}
+.upd-list li::before{content:"";position:absolute;left:4px;top:10px;width:5px;height:5px;border-radius:50%;background:var(--c2);opacity:.5}
+.hl{font-weight:800;color:var(--ink);background:linear-gradient(180deg,transparent 60%,#ffe89b 60%);padding:0 2px}
+.hl-r{font-weight:800;color:#c13f3f;background:linear-gradient(180deg,transparent 60%,#fde4e4 60%);padding:0 2px}
+.hl-g{font-weight:800;color:#1d7a48;background:linear-gradient(180deg,transparent 60%,#daf1e2 60%);padding:0 2px}
+
+.scoring-inner,.chip-inner,.narr-inner{padding:0 20px 14px;font-size:12.5px;color:var(--ink-2);line-height:1.7}
+.scoring-inner table,.chip-inner table{width:100%;border-collapse:collapse;margin-top:6px}
+.scoring-inner th,.chip-inner th{text-align:left;font-size:10px;font-weight:800;color:var(--ink-3);letter-spacing:.06em;padding:4px 8px;border-bottom:1px solid var(--line)}
+.scoring-inner td,.chip-inner td{padding:4px 8px;font-size:12px;color:var(--ink-2);border-bottom:1px solid var(--line-soft)}
+.scoring-inner td:first-child,.chip-inner td:first-child{font-weight:700;color:var(--ink)}
+.chip-inner td.num{font-variant-numeric:tabular-nums;text-align:right}
+.chip-inner td.pos{color:#1d7a48;font-weight:700}
+.chip-inner td.neg{color:#c13f3f;font-weight:700}
+
+.narr-inner h4{margin:10px 0 4px;font-size:12px;font-weight:800;color:var(--c7);letter-spacing:.06em;text-transform:uppercase}
+.narr-inner .narr-item{padding:8px 12px;margin:6px 0;background:var(--c7w);border-left:3px solid var(--c7);border-radius:0 4px 4px 0;font-size:12.5px}
+.narr-inner .narr-item b{color:var(--ink);font-weight:800}
+.narr-inner .narr-neg{background:#fdf5f5;border-left-color:#c13f3f}
+.narr-inner .narr-pos{background:#eaf5ee;border-left-color:#1d7a48}
+
+.zones{display:flex;flex-direction:column;gap:0}
+.zone{--zc:var(--ink);--zb:#f5f5f5;--zw:#fafafa;background:var(--surface);border:1px solid var(--line);border-bottom:none;display:grid;grid-template-columns:220px 1fr;min-height:0;position:relative;transition:box-shadow .2s}
+.zone:first-child{border-radius:var(--r) var(--r) 0 0}
+.zone:last-child{border-bottom:1px solid var(--line);border-radius:0 0 var(--r) var(--r)}
+.zone::before{content:"";position:absolute;top:0;bottom:0;left:0;width:4px;background:var(--zc);z-index:2}
+.zone:first-child::before{border-radius:var(--r) 0 0 0}
+.zone:last-child::before{border-radius:0 0 0 var(--r)}
+.zone:hover{box-shadow:0 2px 12px rgba(17,26,40,.08);z-index:2}
+
+.zone[data-c="1"]{--zc:var(--c1);--zb:var(--c1b);--zw:var(--c1w)}
+.zone[data-c="2"]{--zc:var(--c2);--zb:var(--c2b);--zw:var(--c2w)}
+.zone[data-c="3"]{--zc:var(--c3);--zb:var(--c3b);--zw:var(--c3w)}
+.zone[data-c="4"]{--zc:var(--c4);--zb:var(--c4b);--zw:var(--c4w)}
+.zone[data-c="5"]{--zc:var(--c5);--zb:var(--c5b);--zw:var(--c5w)}
+.zone[data-c="6"]{--zc:var(--c6);--zb:var(--c6b);--zw:var(--c6w)}
+.zone[data-c="7"]{--zc:var(--c7);--zb:var(--c7b);--zw:var(--c7w)}
+.zone[data-c="8"]{--zc:var(--c8);--zb:var(--c8b);--zw:var(--c8w)}
+
+.z-left{padding:14px 16px;background:var(--zw);border-right:1px solid var(--line-soft);display:flex;flex-direction:column;gap:5px}
+.z-left .price{font-size:28px;font-weight:800;color:var(--zc);letter-spacing:-.02em;line-height:1.05}
+.z-left .name{font-size:15px;font-weight:800;color:var(--ink);line-height:1.25}
+.z-left .meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;font-size:10.5px;font-weight:800;background:var(--zb);color:var(--zc);border:1px solid color-mix(in srgb,var(--zc) 25%,transparent);white-space:nowrap}
+.badge::before{content:"●";font-size:7px;vertical-align:1px}
+.dist{font-size:11.5px;color:var(--ink-3);font-weight:600}
+.dist b{color:var(--ink-2);font-weight:700}
+
+.stars{font-size:13px;letter-spacing:1px;line-height:1;margin:1px 0}
+.stars .on{color:var(--zc)}
+.stars .off{color:var(--line)}
+.vol-bar{display:flex;align-items:center;gap:8px;margin-top:1px}
+.vol-track{flex:1;height:5px;background:var(--line);border-radius:3px;overflow:hidden;max-width:110px}
+.vol-fill{height:100%;border-radius:3px;background:var(--zc);opacity:.55}
+.vol-label{font-size:10px;color:var(--ink-3);font-weight:700;white-space:nowrap}
+
+.z-right{padding:12px 18px;display:flex;flex-direction:column;gap:8px}
+.z-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.z-cols h4{margin:0 0 4px;font-size:10px;font-weight:800;color:var(--zc);letter-spacing:.1em;text-transform:uppercase}
+.z-cols ul{margin:0;padding:0;list-style:none}
+.z-cols li{font-size:12.5px;color:var(--ink-2);line-height:1.5;padding:2px 0 2px 12px;position:relative}
+.z-cols li::before{content:"";position:absolute;left:2px;top:8px;width:4px;height:4px;border-radius:50%;background:var(--ink-4)}
+.z-cols li b,.z-cols li strong{color:var(--ink);font-weight:800}
+
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:5px;background:var(--zw);border:1px solid color-mix(in srgb,var(--zc) 20%,transparent);font-size:11px;color:var(--ink-2);font-weight:600}
+.chip em{font-style:normal;font-size:9px;font-weight:800;color:var(--zc);letter-spacing:.03em}
+.chip b{color:var(--ink);font-weight:800}
+
+.verdict{padding:7px 12px;background:var(--zw);border-left:2px solid var(--zc);border-radius:0 4px 4px 0;font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.verdict::before{content:"判讀 ";font-size:9px;font-weight:800;color:var(--zc);letter-spacing:.1em;margin-right:4px}
+.verdict b,.verdict strong{color:var(--ink);font-weight:800}
+
+.gap{background:#f4efe3;border:1px solid var(--line);border-bottom:none;padding:8px 18px 8px 24px;display:grid;grid-template-columns:220px 1fr;gap:0;font-size:12px;color:var(--ink-3);position:relative}
+.gap::before{content:"";position:absolute;top:0;bottom:0;left:0;width:4px;background:repeating-linear-gradient(180deg,var(--rule) 0,var(--rule) 4px,transparent 4px,transparent 8px)}
+.gap .g-range{font-weight:800;color:var(--ink-2);font-size:13px;padding-right:16px;display:flex;align-items:center}
+.gap .g-desc{padding:0 0 0 18px;border-left:1px dashed var(--rule);line-height:1.5}
+.gap .g-desc strong{color:var(--ink-2);font-weight:700}
+
+.now-row{background:linear-gradient(90deg,#1d8850,#0f9a5a);border:none;padding:9px 24px;display:flex;align-items:center;gap:14px;font-size:12px;color:#fff;font-weight:800;position:relative;z-index:3;box-shadow:0 2px 8px rgba(15,154,90,.3)}
+.now-row .arrow{font-size:16px;color:#fff}
+.now-row .label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.now-row .val{font-size:22px;letter-spacing:-.02em;color:#fff}
+.now-row .note{font-size:11px;color:rgba(255,255,255,.85);font-weight:600;margin-left:auto}
+
+.ft{margin-top:14px;padding:12px 20px;background:var(--line-soft);border-radius:var(--r);font-size:11px;color:var(--ink-3);text-align:center;line-height:1.6}
+.ft b{color:var(--ink-2)}
+
+@media(max-width:760px){
+  .hd-top{flex-direction:column;gap:8px;align-items:flex-start}
+  .hd-price{text-align:left}
+  .hd-id h1,.hd-id h2{font-size:30px}
+  .hd-id .pipe{font-size:26px}
+  .hd-price .p{font-size:36px}
+  .hd-stats{flex-wrap:wrap}
+  .hd-stats>div{flex:none;width:50%;padding:8px 14px}
+  .hd-stats>div:nth-child(2){border-right:none}
+  .hd-stats>div:nth-child(3){padding-left:0}
+  .kpis{gap:6px}
+  .kp{padding:5px 10px;font-size:12px}
+  .kp .v{font-size:13px}
+  .judge-grid{grid-template-columns:1fr;gap:10px}
+  .upd-list{columns:1}
+  .zone{grid-template-columns:1fr}
+  .z-left{border-right:none;border-bottom:1px solid var(--line-soft);flex-direction:row;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px}
+  .z-left .price{font-size:24px}
+  .z-left .name{font-size:14px}
+  .z-right{padding:12px 16px}
+  .z-cols{grid-template-columns:1fr}
+  .gap{grid-template-columns:1fr;gap:4px}
+  .gap .g-desc{border-left:none;padding-left:0}
+}
+@media(max-width:480px){
+  body{padding:14px 8px 30px}
+  .hd-id h1,.hd-id h2{font-size:24px}
+  .hd-id .pipe{font-size:20px}
+  .hd-price .p{font-size:30px}
+  .z-left .price{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="w">
+
+<header class="hd">
+  <div class="hd-top">
+    <div class="hd-id">
+      <h1 class="m"><span class="code">8349</span> 恒耀</h1>
+      <span class="pipe">|</span>
+      <h2>匯聚帶分析</h2>
+    </div>
+    <div class="hd-price m">
+      <span class="p">45.15</span>
+      <span class="chg">↑ 3.08%<span>距波段低 +18.7%</span></span>
+    </div>
+  </div>
+  <dl class="hd-stats m">
+    <div><dt>基準日</dt><dd>2026/04/17</dd></div>
+    <div><dt>收盤</dt><dd>45.15</dd></div>
+    <div><dt>波段低</dt><dd>38.05</dd></div>
+    <div><dt>近波段高</dt><dd>64.80</dd></div>
+  </dl>
+  <div class="kpis m">
+    <div class="kp"><span class="dot" style="background:var(--c1)"></span><span class="v">60–65</span><span class="n">★ 極端壓力</span></div>
+    <div class="kp"><span class="dot" style="background:var(--c2)"></span><span class="v">53–57</span><span class="n">★★★ 中期壓力</span></div>
+    <div class="kp"><span class="dot" style="background:var(--c3)"></span><span class="v">50–52</span><span class="n">★★★★ 關鍵壓力</span></div>
+    <div class="kp"><span class="dot" style="background:var(--c4)"></span><span class="v">46–48</span><span class="n">★★★ 第一壓力</span></div>
+    <div class="kp"><span class="dot" style="background:var(--c5)"></span><span class="v">42–44</span><span class="n">★★★★ 第一支撐</span></div>
+    <div class="kp"><span class="dot" style="background:var(--c6)"></span><span class="v">40–42</span><span class="n">★★★★ 第二支撐</span></div>
+    <div class="kp"><span class="dot" style="background:var(--c7)"></span><span class="v">37–40</span><span class="n">★★★★★ 核心支撐</span></div>
+  </div>
+</header>
+
+<!-- OVERALL JUDGMENT -->
+<section class="judge">
+  <h3>整體判讀</h3>
+  <div class="judge-grid m">
+    <div>
+      <dt>短期 1–2 週</dt>
+      <dd>偏多<span class="stars">★★★★</span></dd>
+      <div class="rsn">4/17 無下影紅 K 收高 + MA5 穿 MA20/60</div>
+    </div>
+    <div>
+      <dt>中期 1–3 個月</dt>
+      <dd>偏多<span class="stars">★★★★★</span></dd>
+      <div class="rsn">週線突破 17→22 長期下降壓力線 + 籌碼連 54 週集中</div>
+    </div>
+    <div>
+      <dt>長期 3–6 個月</dt>
+      <dd>偏多<span class="stars">★★★★</span></dd>
+      <div class="rsn">假跌破反轉結構 + 傳產族群輪動 + 關稅利空消化</div>
+    </div>
+  </div>
+  <div class="judge-note">
+    <b>情境主線：</b>籌碼底 + 技術底 + 利空消化三重共振，現價 45.15 已站上 MA5/10/20/60 且挑戰 46.90 前高僅差 3.7%。若突破前高則打開 50-52 關鍵壓力區（5 法匯聚）。<b>破壞訊號：</b>跌破 42.50（4/15 長黑 K 低點失守，代表突破失敗）。
+  </div>
+</section>
+
+<!-- UPDATE -->
+<section class="upd open" id="upd">
+  <button class="upd-toggle" onclick="this.closest('.upd').classList.toggle('open')">
+    <h3>本週分析重點</h3>
+    <span class="arr">▾</span>
+  </button>
+  <div class="upd-body">
+    <ul class="upd-list">
+      <li>4/17 開 43.50 → 收最高 45.15，<span class="hl-r">無下影長紅 K</span>，吞掉 4/15 長黑一半以上，振幅 4.91%。</li>
+      <li>4/9→4/14 放量突破 44，4/15 長黑拉回 42.70 測試 MA20/60（42.33/42.50）<span class="hl-g">支撐守穩</span>，4/16-4/17 連兩日收復。</li>
+      <li>3/4 (38.05) 與 3/9 (38.10) 形成<span class="hl">雙底</span>後連續墊高：38→41.4→40.35→42.70，經典<span class="hl">突破＋拉回測試成功</span>結構。</li>
+      <li>均線結構：MA5 <span class="hl-g">(44.40↑)</span> &gt; MA10 (43.20↑) &gt; MA20 (42.43↑) &lt; MA60 (42.54↑)，短中期<span class="hl">黃金交叉即將成立</span>。</li>
+      <li>週 K 突破 2017→2022 <span class="hl">長期下降壓力線</span>（今日推算 ~42），形成「假跌破反轉」大結構。</li>
+      <li>集保表大戶持股% <span class="hl-r">連 3 週突破 70%</span>（69.52 → 70.26 → 70.45），股東人數連 54 週減少。</li>
+      <li>融資餘額 1,905 張（下降中），<span class="hl">券資比 0%</span>，空方早已出清。</li>
+      <li>買回庫藏股剩 15 個交易日（至 5/10），仍有 ~3,500 張額度待執行，形成強力地板。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CHIP STRUCTURE CHANGE -->
+<section class="chip-sec open" id="chip">
+  <button class="chip-toggle" onclick="this.closest('.chip-sec').classList.toggle('open')">
+    <h3>籌碼面結構性改變（連 54 週）</h3>
+    <span class="arr">▾</span>
+  </button>
+  <div class="chip-body">
+    <div class="chip-inner">
+      <p style="margin:6px 0 10px">集保表顯示過去 54 週（2025/05/02 起）恒耀籌碼結構出現<b>教科書級的「散戶退、大戶進」</b>變化，零週反彈：</p>
+      <table>
+        <tr><th>指標</th><th style="text-align:right">2025/05/02</th><th style="text-align:right">2025/10/17（除權後）</th><th style="text-align:right">2026/04/17</th><th style="text-align:right">變化</th></tr>
+        <tr><td>總股東人數</td><td class="num">8,643</td><td class="num">8,289</td><td class="num">7,812</td><td class="num neg">−831 人（−9.6%）</td></tr>
+        <tr><td>平均張數/人</td><td class="num">21.97</td><td class="num">25.19</td><td class="num">26.73</td><td class="num pos">+4.76 張（+21.7%）</td></tr>
+        <tr><td>&gt;400 張大股東持股</td><td class="num">127,713</td><td class="num">142,393</td><td class="num">147,115</td><td class="num pos">+19,402 張</td></tr>
+        <tr><td>&gt;400 張大股東持有%</td><td class="num">67.27%</td><td class="num">68.19%</td><td class="num">70.45%</td><td class="num pos">+3.18 pp</td></tr>
+        <tr><td>&gt;1,000 張人數</td><td class="num">19</td><td class="num">21</td><td class="num">22</td><td class="num pos">+3 人</td></tr>
+      </table>
+      <h4 style="margin:14px 0 4px;font-size:11px;font-weight:800;color:var(--c5);letter-spacing:.08em;text-transform:uppercase">本週新進展（4/10 → 4/17）</h4>
+      <ul style="margin:0;padding:0 0 0 16px;font-size:12.5px;line-height:1.7">
+        <li>股東人數：7,857 → <b>7,812</b>（−45 人）</li>
+        <li>大戶持股%：70.26% → <b>70.45%</b>（+0.19pp，大戶續加 389 張）</li>
+        <li>800-1000 張級：3 人 → 2 人（<b>1 人升級為千張大戶</b>）</li>
+        <li>外資持股%：1.47 → <b>1.48</b>（連 2 日轉買 +26.9 張）</li>
+        <li>融資餘額：1,909 → <b>1,905</b>（散戶沒追高）</li>
+      </ul>
+      <p style="margin:12px 0 0;padding:8px 12px;background:var(--c5b);border-radius:6px;font-size:12px;color:var(--ink-2);line-height:1.6">
+        <b style="color:var(--c5)">結構訊號：</b>跌段（2025/02→2026/03）股東人數持續下降 9.6%，大戶持股比例卻從 67% 一路加到 70%，這種「價跌 + 人減 + 大戶加碼」在台股籌碼學裡是最強的「<b>底部吸貨</b>」訊號。融資未見恐慌爆增、券資比 0% 代表空方也早已出清，下跌動能已近枯竭。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- NARRATIVE / CATALYSTS -->
+<section class="narr" id="narr">
+  <button class="narr-toggle" onclick="this.closest('.narr').classList.toggle('open')">
+    <h3>敘事與題材定調</h3>
+    <span class="arr">▾</span>
+  </button>
+  <div class="narr-body">
+    <div class="narr-inner">
+      <h4>核心敘事（★★★★）</h4>
+      <div class="narr-item narr-pos">
+        <b>Tesla 直接供應鏈 + 車用扣件景氣週期</b><br>
+        2016-17 成功打入 Tesla 供應鏈成為直接供應商；電動車專案量 2022 已占 71%。全球前十大車用扣件廠，客戶含 Ford / BMW / VW / Benz / GM / Toyota 等一線車廠。ASP 與毛利率較燃油車扣件高 20-30%。
+      </div>
+      <h4>族群輪動敘事（★★★★）— 本波起漲主因</h4>
+      <div class="narr-item narr-pos">
+        <b>2026 Q1-Q2 全球鋼價普漲</b><br>
+        中鋼 4 月盤熱/冷軋每噸漲 1,200 元；中鴻每噸漲 1,200 元；華新 4 月不鏽鋼盤價上調；鐵礦砂站上 $106/噸、鎳逼近 $17,700/噸。恒耀主要原料是<b>碳鋼 / 合金鋼盤元</b>（非不鏽鋼），但整個鋼鐵族群漲價氛圍帶動資金輪動到扣件族群。
+      </div>
+      <h4>利空消化敘事（★★★★）</h4>
+      <div class="narr-item narr-pos">
+        <b>關稅恐慌 → 協商 → 已消化</b><br>
+        台 / 越產品適用美國 232 條款僅 25% 關稅（低於對等關稅），公司已與美國客戶協調分擔。2024 年美國營收佔比僅 19%，影響有限。2025/02 波段高 64.80 之後的 41% 跌幅主要是關稅恐慌，目前已充分反映。
+      </div>
+      <h4>潛在催化劑（尚未兌現）</h4>
+      <div class="narr-item">
+        <b>Tesla Q1 財報（4 月底）</b>、<b>Cybertruck / Semi 放量</b>、<b>中國車市回溫</b>、<b>人形機器人 Optimus 量產</b>（Tesla 供應鏈延伸想像）、<b>6/27 除息（2026 預估配息 2.0 元）</b>。任一項兌現即可補上敘事缺口。
+      </div>
+      <h4>不屬於的敘事（市場可能誤傳）</h4>
+      <div class="narr-item narr-neg">
+        <b>AI 伺服器 / 半導體 / 低軌衛星 / 國防航太</b> — 恒耀<b>沒有</b>實質切入這些領域。AI 機構件是 jpp-KY (5284)、鴻準、川湖等的故事。勿混淆。
+      </div>
+      <div class="narr-item narr-neg">
+        <b>「不鏽鋼低價庫存 + 報價上漲」</b> — 部分正確但不精準。車用高強度扣件主要用<b>碳鋼 / 合金鋼</b>，不鏽鋼僅少量。精準說法應為「鋼價普漲下的碳鋼原料傳導 + 產品報價同步調升」。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORING LEGEND -->
+<section class="scoring" id="scoring">
+  <button class="scoring-toggle" onclick="this.closest('.scoring').classList.toggle('open')">
+    <h3>星級評定方法</h3>
+    <span class="arr">▾</span>
+  </button>
+  <div class="scoring-body">
+    <div class="scoring-inner">
+      <table>
+        <tr><th>星級</th><th>條件</th><th>範例</th></tr>
+        <tr><td>★★★★★</td><td>4＋ 獨立方法匯聚窄區間（≦3元）＋ 重要歷史低點 ＋ 殖利率 ≧4.5%</td><td>37-40</td></tr>
+        <tr><td>★★★★</td><td>5＋ 方法匯聚 ＋ 均線共振，或關鍵 Fib 0.5/0.618 水位</td><td>42-44、40-42、50-52</td></tr>
+        <tr><td>★★★</td><td>3-4 方法 ＋ 殖利率/量能其一明確</td><td>46-48、53-57</td></tr>
+        <tr><td>★★</td><td>2-3 方法，或已失守轉壓力性質</td><td>35-37</td></tr>
+        <tr><td>★</td><td>極端情境（買回區間界 / ATH）</td><td>60-65、28-30</td></tr>
+      </table>
+      <p style="margin:8px 0 0;font-size:11px;color:var(--ink-3)">
+        技術方法：Fibonacci 回撤（線性＋對數）、N 波等幅/倍幅、趨勢線（線性＋對數）、歷史量密集區、均線匯聚、超長週期 Fib（2017 ATH → 2020 低）。<br>
+        成交量：2020-2026 期間原始價格觸及法，量能條以 41.8K（68-70 帶區，歷史最厚）為 100% 基準。<br>
+        殖利率：以 2026 預估配息 2.0 元計算（2025 實際配現金 1.9974 + 股票 0.9987）。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ ZONE LIST ═════ -->
+<div class="zones">
+
+  <!-- ① 60-65 極端壓力 -->
+  <div class="zone" data-c="1">
+    <div class="z-left">
+      <div class="price m">60 – 65</div>
+      <div class="name">極端壓力 / 2025 高點</div>
+      <div class="stars"><span class="on">★</span><span class="off">☆☆☆☆</span></div>
+      <div class="meta">
+        <span class="badge">極端</span>
+        <span class="dist m">距現價 <b>+32.9% ~ +44.0%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:80%"></div></div>
+        <span class="vol-label">33-40K 厚</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（4 方法）</h4>
+          <div class="chips">
+            <span class="chip"><em>2025/02 波段高</em><b>64.80</b></span>
+            <span class="chip"><em>買回上限</em><b>63.80</b></span>
+            <span class="chip"><em>2024高</em><b>63.00</b></span>
+            <span class="chip"><em>2022高</em><b>55.90→62</b></span>
+            <span class="chip"><em>超長Fib 0.5</em><b>60.33（2017→2024高線）</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>歷史成交量 <b>33-40K 厚</b>（2023-2024 主力套牢區）</li>
+            <li>買回上限 63.80 即公司認定的<b>價值天花板</b></li>
+            <li>殖利率 <b>3.1~3.3%</b>（偏低）</li>
+            <li>本益比 <b>7.4~7.7x</b>（以 2026E EPS 8.5 元算，仍低，但需營收動能配合）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">4 方法 + 厚量 → <b>★ 極端情境壓力</b>。此帶為 2024-2025 套牢區，需要基本面重大利多（Tesla 新車放量 + 毛利率回 25%+）才能突破。一般劇本下非主線目標。</div>
+    </div>
+  </div>
+
+  <div class="gap">
+    <div class="g-range m">57 – 60</div>
+    <div class="g-desc"><strong>過渡區</strong>｜下降壓力線（對數）今日 56.84，長期籌碼較輕（量 19-25K）。若族群氣氛延續則會快速穿越。</div>
+  </div>
+
+  <!-- ② 53-57 中期壓力 -->
+  <div class="zone" data-c="2">
+    <div class="z-left">
+      <div class="price m">53 – 57</div>
+      <div class="name">中期反壓帶</div>
+      <div class="stars"><span class="on">★★★</span><span class="off">☆☆</span></div>
+      <div class="meta">
+        <span class="badge">中期壓力</span>
+        <span class="dist m">距現價 <b>+17.4% ~ +26.2%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:35%"></div></div>
+        <span class="vol-label">10-12K 中</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（5 方法）</h4>
+          <div class="chips">
+            <span class="chip"><em>2025夏季高</em><b>54.20</b></span>
+            <span class="chip"><em>Fib 0.382(25→26)</em><b>54.58</b></span>
+            <span class="chip"><em>Fib 0.618(24→26)</em><b>53.31</b></span>
+            <span class="chip"><em>2023/12高</em><b>55.00</b></span>
+            <span class="chip"><em>Fib 0.236(25→26)</em><b>58.49</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>歷史成交量 <b>10-12K</b>（2024 H2 整理區）</li>
+            <li>為 2025/05-08 夏季反彈的起漲區</li>
+            <li>殖利率 <b>3.5~3.8%</b></li>
+            <li>若突破 50-52 → 直接挑戰此帶下緣 53</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">5 方法 + 中量 → <b>★★★ 中期壓力</b>。此帶若突破，將回到 2025 年中波段區間，意味大波段反轉確認。第一個需要基本面（Q2 財報 / 月營收 YoY 轉正）實質支援的關卡。</div>
+    </div>
+  </div>
+
+  <div class="gap">
+    <div class="g-range m">52 – 53</div>
+    <div class="g-desc"><strong>過渡邊界</strong>｜2023/11 高 52.0 與 Fib 0.5 (24→26) 51.42 之間。無厚量。</div>
+  </div>
+
+  <!-- ③ 50-52 關鍵壓力 -->
+  <div class="zone" data-c="3">
+    <div class="z-left">
+      <div class="price m">50 – 52</div>
+      <div class="name">關鍵壓力 / 5 法匯聚 ⭐</div>
+      <div class="stars"><span class="on">★★★★</span><span class="off">☆</span></div>
+      <div class="meta">
+        <span class="badge">關鍵</span>
+        <span class="dist m">距現價 <b>+10.7% ~ +15.2%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:23%"></div></div>
+        <span class="vol-label">9-12K 中</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（5 方法共振）</h4>
+          <div class="chips">
+            <span class="chip"><em>Fib 0.5 (25→26)</em><b>51.42</b></span>
+            <span class="chip"><em>Fib 0.667 (24→26)</em><b>51.35</b></span>
+            <span class="chip"><em>下降線(線性)</em><b>51.55</b></span>
+            <span class="chip"><em>Fib(log) 0.5</em><b>49.66</b></span>
+            <span class="chip"><em>2015高</em><b>49.20</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>歷史量 <b>9.6K</b>（中等，不厚）</li>
+            <li><b>下降壓力線 + Fib 0.5 + Fib 0.667 三重匯聚</b></li>
+            <li>心理整數 50 元關卡</li>
+            <li>殖利率 <b>3.8~4.0%</b>（接近吸引力門檻）</li>
+            <li>突破後上檔量輕，易推升至 53-57</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">5 方法密集匯聚於 2 元區間 → <b>★★★★ 關鍵壓力</b>。這是整份報告最重要的壓力關卡 — 由「線性下降壓力線 51.55」＋「Fib 0.5 = 51.42」＋「Fib 0.667 = 51.35」三重匯聚構成。突破此帶代表<b>大波段下降趨勢正式反轉</b>。需要量能放大配合（日均 500 張以上）。未突破前視為強壓力。</div>
+    </div>
+  </div>
+
+  <div class="gap">
+    <div class="g-range m">48 – 50</div>
+    <div class="g-desc"><strong>過渡區</strong>｜Fib 0.618 (25→26) 48.27 在此帶內。量能極輕（6-7K），突破後容易直接到 50-52。</div>
+  </div>
+
+  <!-- ④ 46-48 第一壓力 -->
+  <div class="zone" data-c="4">
+    <div class="z-left">
+      <div class="price m">46 – 48</div>
+      <div class="name">第一壓力帶</div>
+      <div class="stars"><span class="on">★★★</span><span class="off">☆☆</span></div>
+      <div class="meta">
+        <span class="badge">第一壓力</span>
+        <span class="dist m">距現價 <b>+1.9% ~ +6.3%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:19%"></div></div>
+        <span class="vol-label">6-10K 輕中</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（4 方法）</h4>
+          <div class="chips">
+            <span class="chip"><em>2026/01高</em><b>46.90</b></span>
+            <span class="chip"><em>小N波1.0a(38→47)</em><b>46.90</b></span>
+            <span class="chip"><em>Fib 0.667 (25→26)</em><b>46.96</b></span>
+            <span class="chip"><em>MA240</em><b>47.28</b></span>
+            <span class="chip"><em>Fib(log) 0.618</em><b>46.63</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>歷史成交量 <b>6.6K</b>（輕薄）</li>
+            <li>2026/01/19 波段高 46.90 為<b>第一挑戰目標</b></li>
+            <li>MA240 壓力線在 47.28（仍下彎）</li>
+            <li>殖利率 <b>4.2~4.3%</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">4 方法 + 輕量 → <b>★★★ 第一壓力</b>。最快在 1-2 週內測試。突破 46.90 放量即為「大型態頸線突破」確認，目標直指 50-52。注意 MA240 (47.28) 仍下彎，首次突破可能遇阻拉回再攻。</div>
+    </div>
+  </div>
+
+  <!-- 現價 -->
+  <div class="now-row m">
+    <span class="arrow">▸</span>
+    <span class="label">現價</span>
+    <span class="val">45.15</span>
+    <span class="note">收盤 2026/04/17 無下影長紅 ｜ 站上 MA5/10/20/60｜ 距 46.90 前高 −3.7%</span>
+  </div>
+
+  <!-- ⑤ 42-44 第一支撐 -->
+  <div class="zone" data-c="5">
+    <div class="z-left">
+      <div class="price m">42 – 44</div>
+      <div class="name">第一支撐 / 均線匯聚</div>
+      <div class="stars"><span class="on">★★★★</span><span class="off">☆</span></div>
+      <div class="meta">
+        <span class="badge">第一支撐</span>
+        <span class="dist m">距現價 <b>−6.98% ~ −2.55%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:25%"></div></div>
+        <span class="vol-label">10.6K 中</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（6 方法共振）</h4>
+          <div class="chips">
+            <span class="chip"><em>MA20</em><b>42.43</b></span>
+            <span class="chip"><em>MA60</em><b>42.54</b></span>
+            <span class="chip"><em>MA10</em><b>43.20</b></span>
+            <span class="chip"><em>Fib 0.786(25→26)</em><b>43.77</b></span>
+            <span class="chip"><em>Fib(log) 0.786</em><b>42.64</b></span>
+            <span class="chip"><em>4/15 拉回低</em><b>42.70</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>歷史量 <b>10.6K</b>（2020-2026 期間中等）</li>
+            <li><b>MA20+MA60 緊密交纏</b>（僅差 0.11）形成雙重支撐</li>
+            <li>4/15 長黑 K 低點 42.70 剛好守此帶，已經過市場測試</li>
+            <li>殖利率 <b>4.5~4.8%</b>（開始具吸引力）</li>
+            <li>融資成本區（近 3 月散戶攤平進場）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">6 方法匯聚（4 條均線 + 2 個 Fib 水位）+ 實戰測試通過 → <b>★★★★ 第一支撐</b>。短期回測不應跌破此帶。跌破 42.50（MA60）即為突破失敗訊號。</div>
+    </div>
+  </div>
+
+  <div class="gap">
+    <div class="g-range m">42 – 42</div>
+    <div class="g-desc"><strong>關鍵防線</strong>｜MA60 (42.54) 與 MA20 (42.43) 交叉點。跌破即技術面警戒。</div>
+  </div>
+
+  <!-- ⑥ 40-42 第二支撐 -->
+  <div class="zone" data-c="6">
+    <div class="z-left">
+      <div class="price m">40 – 42</div>
+      <div class="name">第二支撐 / 上升線匯聚</div>
+      <div class="stars"><span class="on">★★★★</span><span class="off">☆</span></div>
+      <div class="meta">
+        <span class="badge">第二支撐</span>
+        <span class="dist m">距現價 <b>−11.4% ~ −6.98%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:12%"></div></div>
+        <span class="vol-label">5K 薄</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（5 方法）</h4>
+          <div class="chips">
+            <span class="chip"><em>2025/11低</em><b>41.30</b></span>
+            <span class="chip"><em>Fib 0.786(20→25)</em><b>41.53</b></span>
+            <span class="chip"><em>上升線(2020→2025/11)</em><b>41.74</b></span>
+            <span class="chip"><em>Fib(log) 0.886</em><b>40.43</b></span>
+            <span class="chip"><em>2026/04/01低</em><b>40.60</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>歷史量 <b>5K</b>（薄，失守後易滑向核心支撐）</li>
+            <li>2020 起長期<b>上升趨勢線</b>通過此帶</li>
+            <li>殖利率 <b>4.8~5.0%</b></li>
+            <li>2026/04 月內多次測試未破</li>
+            <li>買回實施期間公司積極介入此帶</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">5 方法 + 上升線支撐 → <b>★★★★ 第二支撐</b>。若第一支撐 42-44 失守，此帶為下一道防線。買回公司會集中吸收。失守 40 則要警戒核心支撐。</div>
+    </div>
+  </div>
+
+  <div class="gap">
+    <div class="g-range m">40 – 40</div>
+    <div class="g-desc"><strong>心理關卡</strong>｜整數 40 元為散戶心理防線，買回積極介入區。</div>
+  </div>
+
+  <!-- ⑦ 37-40 核心支撐 -->
+  <div class="zone" data-c="7">
+    <div class="z-left">
+      <div class="price m">37 – 40</div>
+      <div class="name">核心支撐帶 ⭐</div>
+      <div class="stars"><span class="on">★★★★★</span></div>
+      <div class="meta">
+        <span class="badge">最強</span>
+        <span class="dist m">距現價 <b>−18.1% ~ −11.4%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:5%"></div></div>
+        <span class="vol-label">2-5K 薄</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（6 方法共振）</h4>
+          <div class="chips">
+            <span class="chip"><em>2026/03/04 波段低</em><b>38.05</b></span>
+            <span class="chip"><em>Fib 0.886(20→25)</em><b>38.57</b></span>
+            <span class="chip"><em>大N波 c=0.382a</em><b>37.92</b></span>
+            <span class="chip"><em>上升線(2020→2026)</em><b>38.36</b></span>
+            <span class="chip"><em>2023/11低</em><b>37.30</b></span>
+            <span class="chip"><em>還原Fib 0.886</em><b>38.00</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀（集保表強化）</h4>
+          <ul>
+            <li><b>技術</b>：6 方法，線性+對數+N波+上升線+歷史低全部匯聚於 38</li>
+            <li><b>籌碼</b>：連 54 週大戶吸貨結構完成於此帶</li>
+            <li><b>殖利率</b>：<b>5.0~5.4%</b>（具吸引力）</li>
+            <li><b>估值</b>：以 2025 EPS 3.0 元算本益比 12.3-13.3x（歷史偏低）</li>
+            <li><b>買回保護</b>：公司在此帶積極回購</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">6 方法 × 籌碼底 × 買回保護 × 殖利率 5%+ → <b>★★★★★ 三維度全滿</b>。如果跌破，代表整套「底部結構＋突破型態＋籌碼訊號」全部失效，為系統性下修。跌破 37 才應視為完全出場訊號。</div>
+    </div>
+  </div>
+
+  <div class="gap">
+    <div class="g-range m">37 – 35</div>
+    <div class="g-desc"><strong>極端緩衝</strong>｜2020 COVID 低 35.20 之前。歷史量極薄。</div>
+  </div>
+
+  <!-- ⑧ 35-37 極端支撐 -->
+  <div class="zone" data-c="8">
+    <div class="z-left">
+      <div class="price m">35 – 37</div>
+      <div class="name">2020 COVID 低 / 極端</div>
+      <div class="stars"><span class="on">★★★</span><span class="off">☆☆</span></div>
+      <div class="meta">
+        <span class="badge">極端</span>
+        <span class="dist m">距現價 <b>−22.5% ~ −18.1%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:5%"></div></div>
+        <span class="vol-label">2K 極薄</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（3 方法）</h4>
+          <div class="chips">
+            <span class="chip"><em>2020/03 COVID低</em><b>35.20</b></span>
+            <span class="chip"><em>超長Fib 0.786(17→20)</em><b>35.40</b></span>
+            <span class="chip"><em>2019/08低</em><b>33.50</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>歷史量極薄，2020 後未曾觸及</li>
+            <li>殖利率 <b>5.4~5.7%</b>（很高）</li>
+            <li>估值：本益比跌至 10x 以下</li>
+            <li>觸及代表全球金融性衰退情境</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">3 方法 + 極薄量 → <b>★★★</b>（極端情境評級）。僅在系統性崩盤才會觸及。2020 以來從未跌破。跌至此帶等於股價回到 COVID 崩盤谷底。</div>
+    </div>
+  </div>
+
+  <div class="gap">
+    <div class="g-range m">30 – 35</div>
+    <div class="g-desc"><strong>空窗帶</strong>｜2018-2020 週期低點區間。歷史量稀疏。一般劇本不預期觸及。</div>
+  </div>
+
+  <!-- ⑨ 28-30 公司價值線 -->
+  <div class="zone" data-c="1">
+    <div class="z-left">
+      <div class="price m">28 – 30</div>
+      <div class="name">買回下限 / 公司價值線</div>
+      <div class="stars"><span class="on">★★</span><span class="off">☆☆☆</span></div>
+      <div class="meta">
+        <span class="badge">極端情境</span>
+        <span class="dist m">距現價 <b>−37.9% ~ −33.6%</b></span>
+      </div>
+      <div class="vol-bar">
+        <div class="vol-track"><div class="vol-fill" style="width:7%"></div></div>
+        <span class="vol-label">3K 極薄</span>
+      </div>
+    </div>
+    <div class="z-right">
+      <div class="z-cols">
+        <div>
+          <h4>技術來源（2 方法）</h4>
+          <div class="chips">
+            <span class="chip"><em>買回下限</em><b>28.40</b></span>
+            <span class="chip"><em>2018/10低</em><b>33.40</b></span>
+            <span class="chip"><em>2007-2012箱型頂</em><b>29-31</b></span>
+          </div>
+        </div>
+        <div>
+          <h4>量能解讀</h4>
+          <ul>
+            <li>公司自己認定的<b>價值地板</b></li>
+            <li>殖利率 <b>6.5%+</b>（超高）</li>
+            <li>歷史量厚（2007-2012 年的箱型區）</li>
+            <li>本益比跌破 8x</li>
+          </ul>
+        </div>
+      </div>
+      <div class="verdict">公司買回下限 28.40 是重要心理防線 → <b>★★ 公司價值線</b>。若觸及代表公司獲利腰斬以上，屬黑天鵝情境。保留做風險管理參考。</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MA deduction -->
+<section class="scoring" id="ma-info" style="margin-top:12px">
+  <button class="scoring-toggle" onclick="this.closest('.scoring').classList.toggle('open')">
+    <h3>均線扣抵與方向預判（4/17 更新）</h3>
+    <span class="arr">▾</span>
+  </button>
+  <div class="scoring-body">
+    <div class="scoring-inner">
+      <table>
+        <tr><th>均線</th><th>現值</th><th>方向</th><th>距現價</th><th>扣抵值</th><th>近期走向</th></tr>
+        <tr><td>MA5</td><td>44.40</td><td>↑上彎</td><td>+0.75</td><td>44.95</td><td>扣抵 45→45 區，維持上彎</td></tr>
+        <tr><td>MA10</td><td>43.20</td><td>↑上彎</td><td>+1.95</td><td>40.95</td><td>扣抵低位（40-42），MA10 有機會上衝 44+</td></tr>
+        <tr><td>MA20</td><td>42.43</td><td>↑上彎</td><td>+2.72</td><td>42.80</td><td>扣抵 42-43，MA20 已脫離下降，開始上彎</td></tr>
+        <tr><td>MA60</td><td>42.54</td><td>↑上彎</td><td>+2.61</td><td>42.80</td><td>扣抵 42-44，MA60 剛翻揚</td></tr>
+        <tr><td>MA120</td><td>43.40</td><td>↓下彎中</td><td>+1.75</td><td>46.45</td><td>扣抵仍在 45-47，未來 2-3 週持續下彎</td></tr>
+        <tr><td>MA240</td><td>47.28</td><td>↓下彎中</td><td>−2.13</td><td>51.10</td><td>扣抵 49-53 區，持續下彎至 Q3</td></tr>
+      </table>
+      <p style="margin:10px 0 0;font-size:11px;color:var(--ink-3);line-height:1.7">
+        <b>關鍵觀察（黃金交叉）</b>：目前 MA5(44.40) &gt; MA10(43.20) &gt; MA20(42.43)，但 MA20 仍略低於 MA60(42.54)。若本週股價維持 44+，<b>MA20 將於下週明確上穿 MA60</b>，形成短中期黃金交叉，技術面正式翻揚。<br>
+        <b>MA120 下彎壓力</b>：目前 43.40 仍位於股價上方 1.75 元，但扣抵值將由 46.45 遞減至 43-44 區，未來 3-4 週 MA120 將由下彎轉為走平，再轉上揚。<br>
+        <b>MA240 長期趨勢</b>：47.28 是目前唯一位於股價上方的均線，代表年線壓力。若股價能站上 47.28（＝突破 46.90 前高的延伸目標），則長期趨勢正式翻轉。<br>
+        <b>止跌→攻擊轉換條件</b>：(1) 本週 MA20 明確上穿 MA60；(2) 下週股價站穩 46+ 突破前高；(3) 月營收 5 月公告 YoY 轉正或持平。三個條件達成任一都能推升股價至 50-52 關鍵壓力區。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Buyback details -->
+<section class="scoring" id="buyback-info" style="margin-top:12px">
+  <button class="scoring-toggle" onclick="this.closest('.scoring').classList.toggle('open')">
+    <h3>庫藏股買回執行狀態</h3>
+    <span class="arr">▾</span>
+  </button>
+  <div class="scoring-body">
+    <div class="scoring-inner">
+      <table>
+        <tr><th>項目</th><th>內容</th></tr>
+        <tr><td>公告日</td><td>2026/03/11</td></tr>
+        <tr><td>實施期間</td><td>2026/03/12 ~ 2026/05/10（剩 15 個交易日）</td></tr>
+        <tr><td>買回目的</td><td>轉讓股份予員工</td></tr>
+        <tr><td>預定買回張數</td><td>5,000 張（占發行股 2.39%）</td></tr>
+        <tr><td>買回區間</td><td>28.40 ~ 63.80 元</td></tr>
+        <tr><td>估計已執行</td><td>~1,500 張（由均張跳升 0.73→1.24 推估）</td></tr>
+        <tr><td>剩餘額度</td><td>~3,500 張（70% 未執行）</td></tr>
+      </table>
+      <p style="margin:10px 0 0;font-size:11px;color:var(--ink-3);line-height:1.7">
+        <b>執行節奏觀察</b>：3/12 首日跳空即為公告後第一日買回（當日成交 646 張為近 3 月最大量）。4/9-4/14 連 4 日放量，日均 377 張，明顯為公司積極執行期。買回期間股價<b>均張</b>由 0.73 跳至 1.24，符合大單吸貨特徵。<br>
+        <b>5/10 結束後潛在變化</b>：(1) 如果 5 月 EPS 公告優於預期，外資可能延續接棒買盤；(2) 如果營收持平，可能進入 1-2 週的買盤空窗期回測 42-44；(3) 員工轉讓通常公告後 6 個月內執行，意味著 11 月前仍有員工認購行情可期待。
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="ft">
+  <b>8349 恒耀國際 匯聚帶 v1</b>｜基準日 2026/04/17｜還原權值 + 原始日線 CSV 交叉驗證<br>
+  星級 = 技術方法數 × 歷史量厚度 × 均線匯聚 × 籌碼結構 × 殖利率<br>
+  <b>主劇本（偏多）</b>：現價 45.15 → 挑戰 46.90 前高（+3.7%）→ 突破後進攻 50-52 關鍵壓力（+11~15%）→ 若基本面配合可見 53-57（+17~26%）。<br>
+  <b>防守線</b>：42.50（MA60 + MA20 交纏點）不破則多方續航；跌破 42.50 退守第二支撐 40-42；跌破 40 警戒核心支撐 37-40。<br>
+  <b>催化劑待觀察</b>：(1) 月營收公告 YoY 轉折；(2) Tesla Q1 財報；(3) 5/10 買回結束後外資是否接棒；(4) 傳產族群輪動是否延續。<br>
+  本文件僅供技術分析與籌碼研究參考，不構成投資建議。投資有風險，決策請自行判斷。
+</footer>
+
+</div>
+</body>
+</html>
